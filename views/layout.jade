@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/bulma.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .container
+      .nav
+        .nav-left
+          a.nav-item.title.is-4 Listen Up Trump!
+        .nav-right.nav-menu
+          if oauthSession
+            a.nav-item(href='/logout') Logout
+          else
+            a.nav-item(href='/auth/twitter/oauth') Log In with Twitter
+      block content
