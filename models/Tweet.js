@@ -10,7 +10,7 @@ var SentTweet = require('./SentTweet.js');
 var ErrorTweet = require('./ErrorTweet.js');
 var async = require('async');
 
-var LIMIT = 100;
+var LIMIT = 30;
 
 class Tweet {
 
@@ -105,7 +105,8 @@ class Tweet {
             });
 
            if (requests.length) {
-                async.parallel(requests, function(err, results) {
+                async.series(requests, function(err, results) {
+                    console.log('save results');
                     scope.saveResult(results, c => {
                         scope.startSendQueue(offset + LIMIT);
                     });
@@ -121,13 +122,29 @@ class Tweet {
             let twitterClient = new Twitter(user.accessToken, user.accessTokenSecret);
             let result = new TweetResult();
             result.user = user;
+            var didCallCompletion = false;
 
+            setTimeout(function() {
+                if (! didCallCompletion) {
+                    didCallCompletion = true;
+                    callback(null, result.error = `'{ statusCode: 900,data: '{"errors":[{"code":99,"message":"JS Timeout Called"}]}' } }')`);
+                }
+            }, 10000);
             twitterClient.postTweet(scope.tweetText, s => {
                 result.success = s;
                 callback(null, result);
+                if (! didCallCompletion) {
+                    didCallCompletion = true;
+                    callback(null, result);
+                }
             }, f => {
                 result.error = f;
                 callback(null, result);
+
+                if (! didCallCompletion) {
+                    didCallCompletion = true;
+                    callback(null, result);
+                }
             });
         }
     }

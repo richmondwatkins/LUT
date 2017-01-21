@@ -29,8 +29,10 @@ class ErrorTweet {
         this.updated_at = now;
     }
 
-    static saveBatch(errorTweets) {
-        pg.batchInsert('error_tweets', errorTweets).then(function() {});
+    static saveBatch(errorTweets, fn) {
+        pg.batchInsert('error_tweets', errorTweets).then(function() {
+            fn();
+        });
     }
 }
 
