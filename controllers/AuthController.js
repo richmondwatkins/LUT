@@ -10,6 +10,10 @@ class AuthController {
             this.res = res;
         // }
     }
+
+    isAuth() {
+        return ('userId' in this.req.session);
+    }
 }
 
 module.exports = AuthController;

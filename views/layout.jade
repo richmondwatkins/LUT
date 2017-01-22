@@ -4,14 +4,15 @@ html
     title= title
     link(rel='stylesheet', href='/css/bulma.css')
     link(rel='stylesheet', href='/css/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
   body
     .container
       .nav
         .nav-left
-          a.nav-item.title.is-4 Listen Up Trump!
+          img.image.logo(src= '/img/logo.png')
         .nav-right.nav-menu
           if oauthSession
-            a.nav-item(href='/logout') Logout
+            a.nav-item.logout(href='/logout') Logout
           else
-            a.nav-item(href='/auth/twitter/oauth') Log In with Twitter
+            include partials/twitterLoginButton
       block content

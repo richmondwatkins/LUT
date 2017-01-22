@@ -22,16 +22,7 @@ class TweetUserRepository {
     }
 
     createOrUpdate(fn) {
-        let scope = this;
-        pg('users_tweets').select('user_id')
-            .where('user_id', this.userId)
-            .then(ids => {
-                if (ids.length) {
-                    scope.update(fn);
-                } else {
-                    scope.create(fn)
-                }
-            });
+        this.create(fn);
     }
 
     create(fn) {
@@ -65,6 +56,7 @@ class TweetUserRepository {
     }
 
     destroy(fn) {
+        console.log(this.tweetIds);
         let scope = this;
         pg('users_tweets')
             .where('user_id', this.userId)

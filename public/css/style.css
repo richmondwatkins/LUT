@@ -20,15 +20,51 @@ iframe {
     width: 520px;
 }
 
+.twitter-timeline {
+    padding-left: 20px !important;
+}
+
+.tweets {
+  padding-right: 20px;
+  padding-top: 20px;
+  max-width: 520px;
+}
+
 .tweet {
-    border: 1px solid #E1E8ED;
-    display: block !important;
-    margin: 0 auto !important;
-    width: 200px;
+  padding: 20px;
+  border-top: 1px solid #E1E8ED;
+  border-left: 1px solid #E1E8ED;
+  border-right: 1px solid #E1E8ED;
+}
+
+.tweet-footer {
+  border-left: 1px solid #E1E8ED;
+  border-right: 1px solid #E1E8ED;
+  border-bottom: 1px solid #E1E8ED;
+}
+
+.tweet-leave {
+  color: white;
+  background-color: #F04168;
+}
+
+.tweet-join {
+
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 30px auto;
   width: 128px;
+  height: 90px;
 }
+
+.logout, .login {
+  align-items: initial;
+}
+
+.suggest-button {
+  margin-top: 10px;
+}
+
+ #twitter-signup {
+
+ }

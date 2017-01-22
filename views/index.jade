@@ -1,12 +1,29 @@
 extends layout
 
 block content
-  if oauthSession
-    .tweets-container
-      - each tweet, index in tweets
-       include partials/tweet
-  else
-    img.image.is-128.logo(src= '/img/logo.png')
-  a.twitter-timeline(href='https://twitter.com/hashtag/TwitterStories', data-widget-id='821607352843567105')
-    script.
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+ if oauthSession
+  #sessionHolder
+ else
+  #twitter-signup.modal
+   .modal-background
+   .modal-content
+     .box
+        .media-content
+          .content
+            p You must sign in with Twitter before participating in a group tweet.
+            include partials/twitterLoginButton
+   button.modal-close
+
+ .tile
+   .tweets
+     .columns.is-multiline
+       - each tweet, index in tweets
+        include partials/tweet
+      include partials/suggestForm.jade
+
+   .title.is-ancestor
+    a.twitter-timeline(href='https://twitter.com/hashtag/TwitterStories', data-widget-id='821607352843567105')
+      script.
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+ script(src='/js/index.js')

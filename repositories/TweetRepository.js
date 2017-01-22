@@ -19,13 +19,8 @@ class TweetRepository {
         select
             .then(tweets => {
                 fn(tweets.map(t => {
-                    let hashTags = JSON.parse(t.lastHashTags);
+                    t.hashTags = JSON.parse(t.lastHashTags);
                     t.fullText = t.text;
-
-                    hashTags.forEach(ht => {
-                        t.fullText += ` #${ht}`;
-                    });
-
                     return t;
                 }));
             });
