@@ -9,7 +9,7 @@ class BatchTweet {
 
     start() {
         let currentHour = moment().tz('America/New_York').hour();
-        
+        console.log(`======== Collection Tweets for ${currentHour} ========`);
         this.getTweetsForHour(currentHour, resp => {
             resp.forEach(t => {
                 this.send(t);
@@ -29,6 +29,7 @@ class BatchTweet {
     }
 
     send(tweet) {
+        console.log(`======== Start From Batch ========`);
         tweet.start(completion => {
 
         });

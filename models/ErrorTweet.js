@@ -10,8 +10,6 @@ class ErrorTweet {
     //data: '{"errors":[{"code":215,"message":"Bad Authentication data."}]}' } } 
     */
     constructor(tweetId, tweetResult) {
-        console.log(tweetResult);
-
         this.tweet_id = tweetId;
         this.user_id = tweetResult.user.user_id;
         this.httpCode = tweetResult.error.statusCode;

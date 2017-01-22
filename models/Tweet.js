@@ -96,6 +96,7 @@ class Tweet {
         let scope = this;
         this.getUsers(offset, users => {
             if (users === 'done') {
+                console.log(`======== all users processed for tweet ${this.id} ========`);
                 scope.finish()
                 return; 
             }
@@ -106,15 +107,16 @@ class Tweet {
 
            if (requests.length) {
                 async.parallelLimit(requests, 15, function(err, results) {
-                    console.log('save results');
                     scope.saveResult(results, c => {
+                        console.log('======== Start Next Batch ========');
                         scope.startSendQueue(offset + LIMIT);
                     });
                 });
-            } 
+            }  else {
+                scope.finish();
+            }
         });
     }
-
     buildRequest(user) {
         let scope = this;
 
@@ -122,11 +124,13 @@ class Tweet {
             let twitterClient = new Twitter(user.accessToken, user.accessTokenSecret);
             let result = new TweetResult();
             result.user = user;
+
             var didCallCompletion = false;
 
             setTimeout(function() {
                 if (! didCallCompletion) {
                     didCallCompletion = true;
+                    console.log('======== timeout reached ========');
                     result.error = { 
                         statusCode: 900, 
                         data: '{"errors":[{"code":99,"message":"JS Timeout Called"}]}' 
@@ -134,13 +138,16 @@ class Tweet {
                     callback(null, result);
                 }
             }, 10000);
+            console.log('======== posting tweet ========');
             twitterClient.postTweet(scope.tweetText, s => {
+                console.log('======== posting success ========');
                 result.success = s;
                 if (! didCallCompletion) {
                     didCallCompletion = true;
                     callback(null, result);
                 }
             }, f => {
+                console.log('======== posting failure ========');
                 result.error = f;
 
                 if (! didCallCompletion) {
@@ -193,7 +200,7 @@ class Tweet {
             .update(insert)
             .where('id', this.id)
             .then(function() {
-                console.log('finish');
+                console.log(' ========= FINISH BATCH ========= ');
         });
     }
 }
