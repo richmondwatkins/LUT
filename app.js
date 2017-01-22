@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
-var Scheduler = require('./Scheduler');
 var index = require('./routes/index');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
@@ -51,6 +50,7 @@ if (process.env.WORKER_ENV === undefined) {
   app.use('/users', users);
   app.use('/tweets', tweets);
 } else {
+  var Scheduler = require('./Scheduler');
   new Scheduler().start();
 }
 
