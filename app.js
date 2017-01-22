@@ -43,9 +43,9 @@ if (process.env.NODE_ENV) {
 }
 
 app.use(sessionObj);
+app.use('/css', express.static(__dirname + '/node_modules/bulma/css'));
 
 if (process.env.WORKER_ENV === undefined) {
-  app.use('/css', express.static(__dirname + '/node_modules/bulma/css'));
   app.use('/', index);
   app.use('/auth', auth);
   app.use('/users', users);
