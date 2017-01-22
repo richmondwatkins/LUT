@@ -3,9 +3,11 @@
     p #{tweet.fullText} 
       - each hashtag in tweet.hashTags
          a(href='https://twitter.com/hashtag/#{hashtag}?src=hash') ##{hashtag}
-
   footer.card-footer.tweet-footer
    if tweet.isSubbed 
     a(data-tweet-id='#{tweet.id}').tweet-action.tweet-leave.card-footer-item Leave
    else 
     a(data-tweet-id='#{tweet.id}').tweet-action.card-footer-item Join
+   .content.card-footer-item.is-small.has-text-centered
+    p Sent at #{tweet.goesOutAt} EST
+

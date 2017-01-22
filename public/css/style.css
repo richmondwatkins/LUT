@@ -57,6 +57,10 @@ iframe {
   height: 90px;
 }
 
+.explanation {
+  padding-right: 200px;
+}
+
 .logout, .login {
   align-items: initial;
 }

@@ -2,22 +2,26 @@
 var AuthController = require('./AuthController');
 var TweetUserRepository = require('../repositories/TweetUserRepository.js');
 var TweetRepository = require('../repositories/TweetRepository.js');
+var moment = require('moment');
 
 class TweetsController extends AuthController {
 
     index() {
         new TweetRepository().get(tweets => {
+            tweets.forEach(t => {
+                t.goesOutAt = moment().hour(t.hour).format('h a');
+            });
             if (this.isAuth()) {
                 new TweetUserRepository(this.req.session.userId, tweets.map(t => t.id)).get(subedTweets => {
                     subedTweets.forEach(t => {
                         for (var i = 0; i < tweets.length; i++) {
                             if (t.id === tweets[i].id) {
-                                console.log('hit');
                                 tweets[i].isSubbed = true;
                                 break;
                             }
                         }
                     });
+
                     this.res.render('index', { oauthSession: this.isAuth(), tweets: tweets});
                 });
             } else {
