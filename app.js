@@ -8,13 +8,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
-
+var Scheduler = require('./Scheduler');
 var index = require('./routes/index');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 var tweets = require('./routes/tweets');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,11 +43,16 @@ if (process.env.NODE_ENV) {
 }
 
 app.use(sessionObj);
-app.use('/css', express.static(__dirname + '/node_modules/bulma/css'));
-app.use('/', index);
-app.use('/auth', auth);
-app.use('/users', users);
-app.use('/tweets', tweets);
+
+if (process.env.WORKER_ENV === undefined) {
+  app.use('/css', express.static(__dirname + '/node_modules/bulma/css'));
+  app.use('/', index);
+  app.use('/auth', auth);
+  app.use('/users', users);
+  app.use('/tweets', tweets);
+} else {
+  new Scheduler().start();
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

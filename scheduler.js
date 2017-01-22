@@ -5,20 +5,29 @@ var BatchTweet = require('./jobs/BatchTweet.js');
 var pg = require('./database/pg.js');
 var moment = require('moment');
 
-//0 0 * * * *
-cron.schedule("0 0 * * * *", function(){
-    new BatchTweet().start();
+class Scheduler {
 
-    let now = moment();
+    start() {
+        console.log('====== STARTING SCHEDULER ======');
+        //0 0 * * * *
+        cron.schedule("0 0 * * * *", function() {
+            console.log('====== RUNNING SCHEDULED BATCH ======');
+            new BatchTweet().start();
 
-    pg('completed_jobs')
-            .insert({
-                created_at: now,
-                updated_at: now
-            })
-        .then(function() {
+            let now = moment();
 
-        }).catch(err => {
-            console.log(err);
-        });
-}); 
+            pg('completed_jobs')
+                    .insert({
+                        created_at: now,
+                        updated_at: now
+                    })
+                .then(function() {
+
+                }).catch(err => {
+                    console.log(err);
+                });
+        }); 
+    }
+}
+
+module.exports = Scheduler;
