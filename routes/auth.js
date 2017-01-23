@@ -11,7 +11,7 @@ router.get('/twitter/oauth', function(req, res, next) {
 
     twitter.getOAuthRequestToken(oauth => {
         if (! oauth) {
-            res.redirect('https://wwww.google.com');
+            res.redirect('/');
         } else {
             req.session.oauth = oauth;
 

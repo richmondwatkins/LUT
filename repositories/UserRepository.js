@@ -10,7 +10,6 @@ class UserRepository {
     }
 
     createOrUpdate(accessToken, accessTokenSecret, twitterProfileResponse, fn) {
-        console.log(twitterProfileResponse);
         this.accessToken = accessToken;
         this.accessTokenSecret = accessTokenSecret;
         this.twitterProfileResponse = twitterProfileResponse;

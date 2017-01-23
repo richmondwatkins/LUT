@@ -33,7 +33,7 @@ class Twitter {
     getOAuthRequestToken(next) {
         this.oauth.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
             if (error) {
-                console.log('ERROR: ' + error);
+                console.log(error);
                 next();
             }
             else {

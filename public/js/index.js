@@ -16,18 +16,37 @@
 			method = isJoined ? 'DELETE' : 'POST';
 
 		if (isSession) {
+			if (isJoined) {
+				$scope.removeClass('tweet-leave');
+				$scope.text('Join');
+			} else {
+				$scope.addClass('tweet-leave');
+				$scope.text('Leave');
+			}
+
 			$.ajax({
 				url: '/tweets/subscribe',
 				method: method,
-				data: { 'tweetIds[]': tweetIds}
+				data: { 'tweetIds[]': tweetIds},
+				success: function (response) {
+			        
+			    },
+			    error: function (jqXHR, exception) {
+		    	//#error
+					var model = $('#error'),
+					$modelBackground = $('.modal'),
+					$modelClose = $('.modal-close');
+
+					model.addClass('is-active');
+
+					var dimiss = function() {
+						$modelBackground.removeClass('is-active');
+					};
+
+					$modelBackground.on('click', dimiss);
+					$modelClose.on('click', dimiss);
+			    }
 			}).done(function() {
-				if (isJoined) {
-					$scope.removeClass('tweet-leave');
-					$scope.text('Join');
-				} else {
-					$scope.addClass('tweet-leave');
-					$scope.text('Leave');
-				}
 			});
 		} else {
 			handleModel();

@@ -10,8 +10,19 @@ block content
      .box
         .media-content
           .content
-            p 
+            p You must be logged in with Twitter to join a tweet
             include partials/twitterLoginButton
+   button.modal-close
+  #error.modal
+   .modal-background
+   .modal-content
+     article.message.is-danger
+       .message-header
+         p Heavy Load
+       .message-body
+         | We are under heavy load right now and are working to fix it. Please try again soon!
+         | In the meantime keep up with the latest group tweets on our  
+         a(href='https://twitter.com/?lang=en') twitter
    button.modal-close
 
  .tile.is-ancestor
