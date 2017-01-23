@@ -25,12 +25,12 @@ class Tweet {
 
         this.isAlt = altTimeStamp.isBefore(origTimeStamp);
 
-        if (this.isAlt) {
-            this.text = databaseEntry['altText'];
-        } else {
+        // if (this.isAlt) {
+        //     this.text = databaseEntry['altText'];
+        // } else {
             this.text = databaseEntry['text'];
             this.hashTags = this.hashTags.reverse();
-        }
+        // }
     }
 
     start(fn) {
