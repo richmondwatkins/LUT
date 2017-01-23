@@ -190,11 +190,11 @@ class Tweet {
             updated_at: moment()
         };
 
-        if (this.isAlt) {
-            insert.lastAltTextTime = moment();
-        } else {
+        // if (this.isAlt) {
+        //     insert.lastAltTextTime = moment();
+        // } else {
             insert.lastOriginalTextTime = moment();
-        }
+        // }
 
         pg('tweets')
             .update(insert)
