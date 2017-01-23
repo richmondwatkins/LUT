@@ -2,7 +2,7 @@
   .tweet
     p #{tweet.fullText} 
       - each hashtag in tweet.hashTags
-         a(href='https://twitter.com/hashtag/#{hashtag}?src=hash') ##{hashtag}
+         a(href='https://twitter.com/hashtag/#{hashtag}?src=hash')  ##{hashtag}
   footer.card-footer.tweet-footer
    if tweet.isSubbed 
     a(data-tweet-id='#{tweet.id}').tweet-action.tweet-leave.card-footer-item Leave
