@@ -29,6 +29,10 @@ iframe {
     
 }
 
+.join {
+  color: #0a2567;
+}
+
 .tweets {
   padding-top: 20px;
   max-width: 520px;
