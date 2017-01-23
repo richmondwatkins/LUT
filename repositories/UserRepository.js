@@ -83,10 +83,11 @@ class UserRepository {
         info.updated_at = moment();
 
         pg('users')
+            .returning('id')
             .where('id', id)
             .update(info)
             .then(function(id) {
-                fn(id);
+                fn(id[0]);
         });
     }
 }

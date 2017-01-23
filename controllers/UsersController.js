@@ -16,7 +16,10 @@ class UsersController {
             new UserRepository(null)
                 .createOrUpdate(oauth.access_token, oauth.access_token_secret, twitterResp, userId => {
                     this.req.session.userId = userId;
-                    this.res.redirect('/');
+                    let scope = this;
+                    this.req.session.save(function(err) {
+                        scope.res.redirect('/');
+                    });
             });
         }, failure => {
             console.log(failure);

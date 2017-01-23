@@ -8,6 +8,8 @@ var TweetRepository = require('./TweetRepository.js');
 class TweetUserRepository {
 
     constructor(userId, tweetIds) {
+        console.log('============');
+        console.log(userId);
         this.userId = userId;
         this.tweetIds = tweetIds;
     }
