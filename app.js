@@ -34,7 +34,7 @@ let sessionObj = session({
   saveUninitialized: false
 })
   
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV !== undefined) {
   sessionObj.store = new RedisStore({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
