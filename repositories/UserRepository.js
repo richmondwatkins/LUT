@@ -72,7 +72,8 @@ class UserRepository {
             .returning('id')
             .insert(info)
             .then(function(id) {
-                fn(id);
+
+                fn(id[0]);
         }).catch(err => {
             console.log(err);
         });
