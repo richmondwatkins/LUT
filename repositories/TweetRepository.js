@@ -17,6 +17,7 @@ class TweetRepository {
         }
         
         select
+            .orderBy('hour')
             .then(tweets => {
                 fn(tweets.map(t => {
                     t.hashTags = JSON.parse(t.lastHashTags);
