@@ -25,7 +25,7 @@ html
           img.image.logo(src= '/img/logo.png')
         .nav-right.nav-menu
           if oauthSession
-            a.nav-item.logout(href='/logout') Logout
+            a.button.is-danger.nav-item.logout(href='/logout') Logout
           else
             include partials/twitterLoginButton
       block content

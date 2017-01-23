@@ -14,18 +14,19 @@ block content
             include partials/twitterLoginButton
    button.modal-close
 
- .tile
-   .tweets
-     .column
-      .content
-       h1 Tweet Stronger Together
-       p Donald Trump has used the power of Twitter to reach his supporters throughout his campaign. Now it is time to turn it against him. Join together with other Twitter users to send out mass tweets to The Donald at dedicated times each day. While tweeting alone may not get your message noticed the power of the group will.
-     .columns.is-multiline
-       - each tweet, index in tweets
-        include partials/tweet
-       include partials/suggestForm.jade
+ .tile.is-ancestor
+   .tile.is-parent
+    .tweets
+      .column
+       .content
+        h1 Tweet Stronger Together
+        p Donald Trump has used the power of Twitter to reach his supporters throughout his campaign. Now it is time to turn it against him. Join together with other Twitter users to send out mass tweets to The Donald at dedicated times each day. While tweeting alone may not get your message noticed the power of the group will.
+      .columns.is-multiline
+        - each tweet, index in tweets
+         include partials/tweet
+        include partials/suggestForm.jade
 
-   .title.is-ancestor
+   .tile.is-parent
     a.twitter-timeline(href='https://twitter.com/hashtag/ListenUpTrump', data-widget-id='823261418866688000') #ListenUpTrump Tweets
      script.
        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

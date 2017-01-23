@@ -1,6 +1,7 @@
 body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  line-height: 1.5 !important;
 }
 
 a {
@@ -12,6 +13,10 @@ iframe {
     margin: 0 auto !important;
 }
 
+.explanation {
+/*  line-height: 15px;
+*/}
+
 .twitter-signin-container {
     text-align: center;
 }
@@ -21,11 +26,10 @@ iframe {
 }
 
 .twitter-timeline {
-    padding-left: 20px !important;
+    
 }
 
 .tweets {
-  padding-right: 20px;
   padding-top: 20px;
   max-width: 520px;
 }
