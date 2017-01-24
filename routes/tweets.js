@@ -10,6 +10,10 @@ router.post('/suggest', function(req, res, next) {
   new TweetsController(req, res).suggest();
 });
 
+router.post('/send', function(req, res, next) {
+  new TweetsController(req, res).send();
+});
+
 router.post('/subscribe', function(req, res, next) {
   new TweetsController(req, res).create();
 });

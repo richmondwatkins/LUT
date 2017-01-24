@@ -45,6 +45,11 @@ class Tweet {
         });
     }
 
+    sendOne(user, fn) {
+        this.tweetText = this.buildTweetText();
+        this.buildRequest(user)(fn);
+    }
+
     buildTweetText() {
         var hashTagText = '';
         this.hashTags.forEach(t => {
@@ -119,7 +124,7 @@ class Tweet {
     }
     buildRequest(user) {
         let scope = this;
-
+        console.log(user);
         return function(callback) {
             let twitterClient = new Twitter(user.accessToken, user.accessTokenSecret);
             let result = new TweetResult();

@@ -13,6 +13,10 @@ iframe {
     margin: 0 auto !important;
 }
 
+.main-container {
+  max-width: 1152px;
+}
+
 .explanation {
 /*  line-height: 15px;
 */}
@@ -51,13 +55,26 @@ iframe {
   border-bottom: 1px solid #E1E8ED;
 }
 
+.tweet-now {
+  color: #00B6FE !important;
+}
+
 .tweet-leave {
   color: white;
   background-color: #F04168;
 }
 
 .tweet-join {
+  color: white;
+  background-color: #0a2567;
+}
 
+a.tweet-join:hover {
+    color: red;
+}
+
+.tweet-action, .tweet-now {
+  text-align: center;
 }
 
 .logo {

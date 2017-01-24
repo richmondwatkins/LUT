@@ -52,8 +52,12 @@ class UserRepository {
             });
     }
 
-    get() {
-
+    get(fn) {
+        pg('users').select()
+            .where('id', this.userId)
+            .then(user => {
+                fn(user);
+            });
     }
 
     destroy(success, failure) {

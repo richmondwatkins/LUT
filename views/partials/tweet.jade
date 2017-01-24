@@ -7,7 +7,8 @@
    if tweet.isSubbed 
     a(data-tweet-id='#{tweet.id}').tweet-action.tweet-leave.card-footer-item Leave
    else 
-    a.join(data-tweet-id='#{tweet.id}').tweet-action.card-footer-item Join
+    a.join(data-tweet-id='#{tweet.id}').tweet-action.tweet-join.card-footer-item Join
+   a.join(data-tweet-id='#{tweet.id}').tweet-now.card-footer-item Tweet Now
    .content.card-footer-item.is-small.has-text-centered
     p Sends at #{tweet.goesOutAt} EST
 
